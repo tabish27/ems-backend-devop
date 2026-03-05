@@ -27,6 +27,14 @@ public class EmployeeController {
     }
 
     //Build Get Employee REST API
+    @PostMapping("login")
+    public ResponseEntity<String> employeeLogin(@RequestParam Long employeeId,
+                                                @RequestParam String password){
+        return ResponseEntity.ok(employeeService.employeeLogin(employeeId, password));
+    }
+
+
+    //Build Get Employee REST API
     @GetMapping("{id}")
     public ResponseEntity<String> getEmployeeById(@PathVariable("id") Long employeeId){
         return ResponseEntity.ok(employeeService.getEmployeeById(employeeId));
