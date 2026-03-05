@@ -59,4 +59,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    @Override
+    public String employeeLogin(Long employeeId, String password) {
+        return "user logged in with id: " + employeeId;
+    }
+
 }
