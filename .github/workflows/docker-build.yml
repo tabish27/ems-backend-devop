@@ -24,7 +24,7 @@ jobs:
 
       # 3️⃣ Build with Maven
       - name: Build JAR
-        run: mvn clean package -DskipTests
+        run: mvn clean package -DskipTests -DbuildNumber=${{github.run_number}}
 
       # 4️⃣ Build Docker image
       - name: Set up Docker Buildx
@@ -44,13 +44,11 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.run_number }}
-            ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:1.0.${{ github.run_number }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Add image to workflow summary
         run: |
           echo "## Docker Image Pushed 🚀" >> $GITHUB_STEP_SUMMARY
-          echo "- ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
-          echo "- ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:1.0.${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
