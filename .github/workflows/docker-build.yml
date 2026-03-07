@@ -48,3 +48,9 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Add image to workflow summary
+        run: |
+          echo "## Docker Image Pushed 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "- ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- ${{ secrets.DOCKER_USERNAME }}/ems-backend-devop:${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
