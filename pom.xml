@@ -12,7 +12,7 @@
 
     <groupId>com.javalearning</groupId>
     <artifactId>ems-backend-devop</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.${buildNumber}</version>
     <name>ems-backend-devop</name>
     <description>Spring Boot EMS</description>
 
@@ -35,6 +35,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <buildNumber>0</buildNumber>
     </properties>
 
     <dependencies>
